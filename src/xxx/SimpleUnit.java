@@ -1,7 +1,6 @@
 package xxx;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class SimpleUnit extends Unit {
     private BigDecimal coeff;
@@ -20,11 +19,11 @@ public class SimpleUnit extends Unit {
 
     @Override
     public Result fromBase(Result base) {
-        return new Result(base.amount.multiply(coeff), this);
+        return new Result(Math.multiply(base.amount, coeff), this);
     }
 
     @Override
     public Result toBase(Result value) {
-        return new Result(value.amount.divide(coeff, Converter.PRECISION, RoundingMode.UP), category.baseUnit);
+        return new Result(Math.divide(value.amount, coeff), category.baseUnit);
     }
 }

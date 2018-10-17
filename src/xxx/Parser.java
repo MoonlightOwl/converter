@@ -78,7 +78,7 @@ public class Parser {
         String[] parts = input.split("\\s+");
         BigDecimal amount = new BigDecimal(parts[0]);
         Result result = detectModifier(parts[1]);
-        if (result != null) result.amount = result.amount.multiply(amount);
+        if (result != null) result.amount = Math.multiply(result.amount, amount);
         return result;
     }
 }

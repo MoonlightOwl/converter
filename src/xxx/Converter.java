@@ -1,13 +1,8 @@
 package xxx;
 
-import java.math.RoundingMode;
 import java.util.HashMap;
 
 public class Converter {
-    /**
-     * Number of digits after the decimal point in the convertation Result
-     */
-    public static final int PRECISION = 10;
 
     private static HashMap<String, Category> categories = new HashMap<>();
 
@@ -42,8 +37,8 @@ public class Converter {
             }
             Result result = destination.unit.fromBase(source.unit.toBase(source));
             // do some additional calculation to respect the requested modifier
-            if (source.modifier != null) result.amount = result.amount.multiply(source.modifier.getValue());
-            if (destination.modifier != null) result.amount = result.amount.divide(destination.modifier.getValue(), PRECISION, RoundingMode.HALF_EVEN);
+            if (source.modifier != null) result.amount = Math.multiply(result.amount, source.modifier.getValue());
+            if (destination.modifier != null) result.amount = Math.divide(result.amount, destination.modifier.getValue());
             result.modifier = destination.modifier;
             return result;
         } else {
