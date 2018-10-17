@@ -49,22 +49,31 @@ public class Parser {
         modifiers.put("y",     new BigDecimal("0.000000000000000000000001"));
     }
 
+    /**
+     * Parses a string of format "[SI modifier]<unit name>" and returns the corresponding Result with amount 1.
+     * Input examples: "meter", "m", "kilometers", "mm"
+     */
     public static Result detectModifier(String input) {
         Result result = new Result();
         modifiers.entrySet().stream()
             .filter(entry -> input.startsWith(entry.getKey()) && Converter.unitByName(input.substring(entry.getKey().length())) != null)
             .findFirst().ifPresent(entry -> {
             result.unit = Converter.unitByName(input.substring(entry.getKey().length()));
-            result.amount = entry.getValue();
+            result.modifier = entry;
         });
         if (result.unit == null) {
             result.unit = Converter.unitByName(input);
-            if (result.unit != null) result.amount = BigDecimal.ONE;
         }
-        if (result.unit == null) return null;
-        else return result;
+        if (result.unit != null) {
+            result.amount = BigDecimal.ONE;
+            return result;
+        } else return null;
     }
 
+    /**
+     * Parses a string of format "<amount> [SI modifier]<unit name>" and returns the corresponding Result object.
+     * Input examples: "241 decimeters", "1 m", "0.5 km"
+     */
     public static Result fromString(String input) {
         String[] parts = input.split("\\s+");
         BigDecimal amount = new BigDecimal(parts[0]);

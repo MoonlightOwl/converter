@@ -17,7 +17,7 @@ public class Test {
 
         LENGTH.baseUnit = METER;
 
-        Result result = Converter.convert("10 kilometers", "foots");
-        System.out.println(result.amount + " " + result.unit);
+        Result result = Converter.convert("10 kilometers", "nft");
+        System.out.println(result);
     }
 }
