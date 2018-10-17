@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class SimpleUnit extends Unit {
-    private Category category;
     private BigDecimal coeff;
 
     /**
@@ -13,11 +12,10 @@ public class SimpleUnit extends Unit {
      * @param shortName short symbol (like "ft")
      * @param coeff     coefficient for convertation to the base unit (like 0.3048)
      */
-    public SimpleUnit(String name, String shortName, BigDecimal coeff, Category category) {
+    public SimpleUnit(String name, String shortName, BigDecimal coeff) {
         this.name = name;
         this.shortName = shortName;
         this.coeff = coeff;
-        this.category = category;
     }
 
     @Override
@@ -27,6 +25,6 @@ public class SimpleUnit extends Unit {
 
     @Override
     public Result toBase(Result value) {
-        return new Result(value.amount.divide(coeff, RoundingMode.FLOOR), category.baseUnit);
+        return new Result(value.amount.divide(coeff, Converter.PRECISION, RoundingMode.UP), category.baseUnit);
     }
 }

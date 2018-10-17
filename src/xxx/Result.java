@@ -31,6 +31,6 @@ public class Result {
                         unit.shortName :
                         unit.name
                 )
-        ) + (amount.compareTo(BigDecimal.ONE) > 0 ? "s" : "");
+        ) + (amount.compareTo(BigDecimal.ONE) != 0 && (modifier == null || modifier.getKey().length() > 2) ? "s" : "");
     }
 }

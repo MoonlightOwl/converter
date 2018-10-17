@@ -2,6 +2,12 @@ package xxx;
 
 abstract public class Unit {
     /**
+     * The category this unit belongs to.
+     * Only the units within the same category can be converted to each other.
+     */
+    public Category category;
+
+    /**
      * Names of the unit, that will be used lated for parsing.
      * For example: "meter" / "m"
      */
