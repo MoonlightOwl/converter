@@ -19,11 +19,11 @@ public class SimpleUnit extends Unit {
 
     @Override
     public Result fromBase(Result base) {
-        return new Result(Math.multiply(base.amount, coeff), this);
+        return new Result(Math.divide(base.amount, coeff), this);
     }
 
     @Override
     public Result toBase(Result value) {
-        return new Result(Math.divide(value.amount, coeff), category.baseUnit);
+        return new Result(Math.multiply(value.amount, coeff), category.baseUnit);
     }
 }

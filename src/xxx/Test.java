@@ -20,6 +20,6 @@ public class Test {
         System.out.println(Converter.convert("10 kilometers", "nft"));
         System.out.println(Converter.convert("1024 Mb", "Gb"));
         System.out.println(Converter.convert("8 bit", "meters"));
-        System.out.println(Converter.convert("1 inch", "in"));
+        System.out.println(Converter.convert("25.4 mm", "in"));
     }
 }
